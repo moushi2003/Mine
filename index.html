@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Dancing+Script:wght@600&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -44,7 +44,7 @@
         <button id="musicBtn" class="hero-btn">🎵 Play Music</button>
     </div>
 
-    <audio id="music">
+    <audio id="music" loop>
         <source src="spiderman.mp3" type="audio/mpeg">
     </audio>
 
@@ -67,7 +67,7 @@
             <div class="balloon b6"><div class="balloon-body"></div><div class="string"></div></div>
         </div>
 
-        <!-- Section Title (Placed with proper top spacing above calendar) -->
+        <!-- Section Title -->
         <div class="cake-header-wrap">
             <h2 class="cake-title">Happy 24th Birthday ❤️</h2>
         </div>
@@ -160,28 +160,33 @@
         </div>
     </section>
 
-    <!-- ================= ROSE BLOOMING PAGE ================= -->
-    <section class="rose-page">
-        <div class="rose-scene">
-            <h1 class="rose-title">Before You Read My Heart... 🌹</h1>
-            <div class="garden">
-                <div class="soil"></div>
-                <div class="plant">
-                    <div class="stem">
-                        <div class="leaf left"></div>
-                        <div class="leaf right"></div>
-                        <div class="rose">
-                            <div class="petal petal1"></div>
-                            <div class="petal petal2"></div>
-                            <div class="petal petal3"></div>
-                            <div class="petal petal4"></div>
-                            <div class="rose-center"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="butterfly">🦋</div>
-                <div class="bird">🕊️</div>
+    <!-- ================= HYPER-REALISTIC ROSE BLOOMING GARDEN PAGE ================= -->
+    <section class="rose-page-3d">
+        <div class="night-sky">
+            <div class="stars"></div>
+            <div class="moon"></div>
+        </div>
+        <div class="ground-3d"></div>
+        <div class="plant-3d">
+            <div class="stem-3d"></div>
+            <div class="leaf left leaf1"></div>
+            <div class="leaf right leaf2"></div>
+            <div class="leaf left leaf3"></div>
+            <div class="leaf right leaf4"></div>
+            <div class="bud-3d">
+                <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div>
+                <div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div>
             </div>
+        </div>
+        <div class="butterfly-3d">
+            <div class="wing left"></div>
+            <div class="body"></div>
+            <div class="wing right"></div>
+        </div>
+        <div class="glow-3d"></div>
+        <div class="rose-header-overlay">
+            <h1 class="rose-title-3d">Before You Read My Heart... 🌹</h1>
+            <p class="rose-subtitle-3d">Watch the silent soil bloom with beauty & hope...</p>
         </div>
     </section>
 
@@ -236,6 +241,36 @@
             </div>
         </div>
     </section>
+
+    <!-- ================= INTERACTIVE STEPS CONTAINER (After Unspoken Letter) ================= -->
+    <div id="interactiveContainer" class="hidden-section">
+        <!-- Step 1: Question 1 -->
+        <div class="card-box" id="stepQ1">
+            <h2>Do you like this surprise?</h2>
+            <div class="btn-group">
+                <button class="action-btn yes-btn" onclick="nextStep(2)">Yes! 💖</button>
+                <button class="action-btn no-btn" onmouseover="moveNoButton(this)">No 😜</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Question 2 -->
+        <div class="card-box hidden" id="stepQ2">
+            <h2>Will you keep this moment in your heart?</h2>
+            <div class="btn-group">
+                <button class="action-btn yes-btn" onclick="triggerFinale()">Yes, absolutely! 🥰</button>
+                <button class="action-btn no-btn" onmouseover="moveNoButton(this)">No 🤭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= GRAND FINALE SECTION (Shinchan & Fireworks) ================= -->
+    <div id="finaleSection" class="hidden-section">
+        <div class="fireworks-container" id="fireworks"></div>
+        <div class="finale-content">
+            <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Shinchan Dancing" class="shinchan-gif">
+            <h1 class="finale-title">Keep Smiling Forever please 😁</h1>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
