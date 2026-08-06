@@ -48,60 +48,68 @@
         <source src="spiderman.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- ================= UPDATED CAKE PAGE ================= -->
+    <!-- ================= UPDATED CAKE PAGE (WITH COUNTDOWN & RISING BALLOONS) ================= -->
     <section class="cake-page">
         <!-- Blowing Curtains on Sides -->
         <div class="curtain left-curtain"></div>
         <div class="curtain right-curtain"></div>
 
-        <!-- Home-Decorated Corner Balloons -->
-        <div class="balloon-cluster left-cluster">
-            <div class="balloon b1"><div class="balloon-body"></div><div class="string"></div></div>
-            <div class="balloon b2"><div class="balloon-body"></div><div class="string"></div></div>
-            <div class="balloon b3"><div class="balloon-body"></div><div class="string"></div></div>
+        <!-- Countdown Overlay (Appears first) -->
+        <div id="countdownOverlay" class="countdown-overlay">
+            <div id="countdownNumber" class="countdown-num">3</div>
         </div>
 
-        <div class="balloon-cluster right-cluster">
-            <div class="balloon b4"><div class="balloon-body"></div><div class="string"></div></div>
-            <div class="balloon b5"><div class="balloon-body"></div><div class="string"></div></div>
-            <div class="balloon b6"><div class="balloon-body"></div><div class="string"></div></div>
-        </div>
-
-        <!-- Section Title -->
-        <div class="cake-header-wrap">
-            <h2 class="cake-title">Happy 24th Birthday ❤️</h2>
-        </div>
-
-        <!-- Background Calendar (August 2026, August 17 marked) -->
-        <div class="calendar-bg">
-            <div class="cal-header">August 2026</div>
-            <div class="cal-grid">
-                <span class="day-name">Su</span><span class="day-name">Mo</span><span class="day-name">Tu</span><span class="day-name">We</span><span class="day-name">Th</span><span class="day-name">Fr</span><span class="day-name">Sa</span>
-                <span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span>1</span>
-                <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
-                <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
-                <span>16</span><span class="marked-date">17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
-                <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
-                <span>30</span><span>31</span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span>
+        <!-- Main Cake Content (Revealed after countdown) -->
+        <div id="cakeMainContent" class="cake-main-content hidden-content">
+            <!-- Home-Decorated Corner Balloons (Will rise up) -->
+            <div class="balloon-cluster left-cluster">
+                <div class="balloon b1"><div class="balloon-body"></div><div class="string"></div></div>
+                <div class="balloon b2"><div class="balloon-body"></div><div class="string"></div></div>
+                <div class="balloon b3"><div class="balloon-body"></div><div class="string"></div></div>
             </div>
-        </div>
 
-        <div class="spotlight"></div>
+            <div class="balloon-cluster right-cluster">
+                <div class="balloon b4"><div class="balloon-body"></div><div class="string"></div></div>
+                <div class="balloon b5"><div class="balloon-body"></div><div class="string"></div></div>
+                <div class="balloon b6"><div class="balloon-body"></div><div class="string"></div></div>
+            </div>
 
-        <!-- Single-tier Birthday Cake with Candle -->
-        <div class="birthday-cake">
-            <div class="plate"></div>
-            <div class="cake-body">
-                <div class="frosting-drip"></div>
-                <div class="candle">
-                    <div class="flame"></div>
+            <!-- Section Title -->
+            <div class="cake-header-wrap">
+                <h2 class="cake-title">Happy 24th Birthday ❤️</h2>
+            </div>
+
+            <!-- Background Calendar (August 2026, August 17 marked) -->
+            <div class="calendar-bg">
+                <div class="cal-header">August 2026</div>
+                <div class="cal-grid">
+                    <span class="day-name">Su</span><span class="day-name">Mo</span><span class="day-name">Tu</span><span class="day-name">We</span><span class="day-name">Th</span><span class="day-name">Fr</span><span class="day-name">Sa</span>
+                    <span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span>1</span>
+                    <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                    <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                    <span>16</span><span class="marked-date">17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+                    <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+                    <span>30</span><span>31</span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span><span class="dim"></span>
                 </div>
             </div>
-        </div>
 
-        <div class="cake-buttons">
-            <button id="blowBtn">💨 Make a Wish</button>
-            <button id="nextBtn">Next 💌</button>
+            <div class="spotlight"></div>
+
+            <!-- Single-tier Birthday Cake with Candle -->
+            <div class="birthday-cake">
+                <div class="plate"></div>
+                <div class="cake-body">
+                    <div class="frosting-drip"></div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-buttons">
+                <button id="blowBtn">💨 Make a Wish</button>
+                <button id="nextBtn">Next 💌</button>
+            </div>
         </div>
     </section>
 
@@ -248,7 +256,7 @@
         <div class="card-box" id="stepQ1">
             <h2>Do you like this surprise?</h2>
             <div class="btn-group">
-                <button class="action-btn yes-btn" onclick="nextStep(2)">Yes! 💖</button>
+                <button class="action-id yes-btn" onclick="nextStep(2)">Yes! 💖</button>
                 <button class="action-btn no-btn" onmouseover="moveNoButton(this)">No 😜</button>
             </div>
         </div>
