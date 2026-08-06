@@ -106,7 +106,72 @@ function createFireworks() {
     }
 }
 
-/* ================= 4. GLOBAL INTERACTION FUNCTIONS ================= */
+/* ================= 4. GRAND FINALE FIREWORKS & INTERACTIVE STEPS ================= */
+function triggerFinaleFireworks() {
+    const container = document.getElementById('finaleFireworks');
+    if (!container) return;
+
+    const colors = ['#ff4568', '#ffd700', '#00ffff', '#ff69b4', '#7c4dff', '#ffffff'];
+
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'firework-particle';
+        
+        // Start from center of the screen
+        const startX = window.innerWidth / 2;
+        const startY = window.innerHeight / 2;
+        
+        particle.style.left = `${startX}px`;
+        particle.style.top = `${startY}px`;
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 80 + Math.random() * 220;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+
+        particle.style.setProperty('--dx', `${dx}px`);
+        particle.style.setProperty('--dy', `${dy}px`);
+
+        container.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 1200);
+    }
+}
+
+function showInteractiveStep(stepNumber) {
+    // Hide all steps
+    document.querySelectorAll('.card-box').forEach(card => card.classList.add('hidden'));
+    
+    // Show specific step
+    const targetCard = document.getElementById(`step${stepNumber}`);
+    if (targetCard) {
+        targetCard.classList.remove('hidden');
+    }
+}
+
+function dodgeNoButton(btn) {
+    const x = (Math.random() - 0.5) * 200;
+    const y = (Math.random() - 0.5) * 100;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function showFinale() {
+    const container = document.getElementById('interactiveContainer');
+    const finale = document.getElementById('finaleSection');
+    
+    if (container) container.classList.add('hidden');
+    if (finale) {
+        finale.classList.remove('hidden');
+        triggerFinaleFireworks();
+        // Keep launching fireworks periodically
+        setInterval(triggerFinaleFireworks, 1500);
+    }
+}
+
+/* ================= 5. GLOBAL INTERACTION FUNCTIONS ================= */
 
 function openLetter() {
     const envelope = document.getElementById('envelopeContainer');
@@ -147,7 +212,7 @@ function spawnHearts(event) {
     }
 }
 
-/* ================= 5. EVENT LISTENERS ================= */
+/* ================= 6. EVENT LISTENERS ================= */
 document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
     initWebCanvas();
@@ -160,10 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
         musicBtn.addEventListener('click', () => {
             if (music.paused) {
                 music.play();
-                musicBtn.innerText = '⏸️ Pause Music';
+                musicBtn.innerText = '⏸️';
             } else {
                 music.pause();
-                musicBtn.innerText = '🎵 Play Music';
+                musicBtn.innerText = '🎵';
             }
         });
     }
@@ -172,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const blowBtn = document.getElementById('blowBtn');
     if (blowBtn) {
         blowBtn.addEventListener('click', () => {
-            // Target the flame class from updated HTML
             const flame = document.querySelector('.flame');
             if (flame) {
                 flame.style.display = 'none';
