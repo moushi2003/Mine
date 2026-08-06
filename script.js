@@ -11,7 +11,7 @@ function typeWriter() {
     }
 }
 
-/* ================= 2. SPIDER CANVAS WEB SHOOTER ================= */
+/* ================= 2. MAGICAL CANVAS PARTICLES ================= */
 function initWebCanvas() {
     const canvas = document.getElementById('webCanvas');
     if (!canvas) return;
@@ -25,17 +25,17 @@ function initWebCanvas() {
         height = canvas.height = window.innerHeight;
     });
 
-    class WebLine {
+    class MagicLine {
         constructor() {
             this.reset();
         }
         reset() {
             this.x = width / 2;
-            this.y = 130; 
+            this.y = 120; 
             this.targetX = Math.random() * width;
             this.targetY = Math.random() * height;
             this.progress = 0;
-            this.speed = 0.02 + Math.random() * 0.03;
+            this.speed = 0.015 + Math.random() * 0.025;
             this.opacity = 1;
         }
         draw() {
@@ -44,10 +44,10 @@ function initWebCanvas() {
             let currentX = this.x + (this.targetX - this.x) * this.progress;
             let currentY = this.y + (this.targetY - this.y) * this.progress;
             ctx.lineTo(currentX, currentY);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
-            ctx.lineWidth = 1.5;
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = "#0066ff";
+            ctx.strokeStyle = `rgba(255, 182, 193, ${this.opacity})`;
+            ctx.lineWidth = 1.2;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = "#ff4081";
             ctx.stroke();
         }
         update() {
@@ -62,17 +62,17 @@ function initWebCanvas() {
         }
     }
 
-    const webs = Array.from({ length: 14 }, () => new WebLine());
+    const lines = Array.from({ length: 15 }, () => new MagicLine());
 
-    function animateWebs() {
+    function animateCanvas() {
         ctx.clearRect(0, 0, width, height);
-        webs.forEach(web => {
-            web.update();
-            web.draw();
+        lines.forEach(line => {
+            line.update();
+            line.draw();
         });
-        requestAnimationFrame(animateWebs);
+        requestAnimationFrame(animateCanvas);
     }
-    animateWebs();
+    animateCanvas();
 }
 
 /* ================= 3. FIREWORKS EFFECT ================= */
@@ -80,21 +80,22 @@ function createFireworks() {
     const cakePage = document.querySelector(".cake-page");
     if (!cakePage) return;
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 35; i++) {
         const fire = document.createElement("div");
-        fire.innerHTML = "✨";
+        fire.innerHTML = Math.random() > 0.5 ? "✨" : "💖";
         fire.style.position = "absolute";
         fire.style.left = Math.random() * 100 + "%";
-        fire.style.top = Math.random() * 60 + "%";
-        fire.style.fontSize = (15 + Math.random() * 25) + "px";
+        fire.style.top = (20 + Math.random() * 50) + "%";
+        fire.style.fontSize = (15 + Math.random() * 20) + "px";
         fire.style.transition = "all 1.5s ease-out";
         fire.style.opacity = "1";
+        fire.style.zIndex = "10";
 
         cakePage.appendChild(fire);
 
         setTimeout(() => {
-            const moveX = (Math.random() - 0.5) * 200;
-            const moveY = (Math.random() - 0.5) * 200;
+            const moveX = (Math.random() - 0.5) * 250;
+            const moveY = (Math.random() - 0.5) * 250;
             fire.style.transform = `translate(${moveX}px, ${moveY}px) scale(2)`;
             fire.style.opacity = "0";
         }, 50);
@@ -151,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
     initWebCanvas();
 
+    // Music Toggle Button
     const musicBtn = document.getElementById('musicBtn');
     const music = document.getElementById('music');
 
@@ -158,21 +160,23 @@ document.addEventListener('DOMContentLoaded', () => {
         musicBtn.addEventListener('click', () => {
             if (music.paused) {
                 music.play();
-                musicBtn.innerText = '⏸️ Pause Theme';
+                musicBtn.innerText = '⏸️ Pause Music';
             } else {
                 music.pause();
-                musicBtn.innerText = '🎵 Play Theme';
+                musicBtn.innerText = '🎵 Play Music';
             }
         });
     }
 
+    // Blow Candle Button
     const blowBtn = document.getElementById('blowBtn');
     if (blowBtn) {
         blowBtn.addEventListener('click', () => {
-            const flames = document.querySelectorAll('.candle span');
-            flames.forEach((flame) => {
+            // Target the flame class from updated HTML
+            const flame = document.querySelector('.flame');
+            if (flame) {
                 flame.style.display = 'none';
-            });
+            }
 
             blowBtn.innerText = '✨ Wish Made! ❤️';
             blowBtn.disabled = true;
@@ -181,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Next Page Scroll Button
     const nextBtn = document.getElementById('nextBtn');
     const letterPage = document.querySelector('.letter-page');
 
