@@ -75,7 +75,35 @@ function initWebCanvas() {
     animateCanvas();
 }
 
-/* ================= 3. FIREWORKS EFFECT ================= */
+/* ================= 3. COUNTDOWN & CAKE PAGE LOGIC ================= */
+function startCountdown() {
+    const overlay = document.getElementById('countdownOverlay');
+    const numDisplay = document.getElementById('countdownNum');
+    const mainContent = document.getElementById('cakeMainContent');
+
+    if (!overlay || !numDisplay || !mainContent) return;
+
+    let count = 3;
+    numDisplay.innerText = count;
+
+    const timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+            numDisplay.innerText = count;
+        } else if (count === 0) {
+            numDisplay.innerText = "🎉";
+        } else {
+            clearInterval(timer);
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                mainContent.classList.add('visible-content');
+            }, 500);
+        }
+    }, 1000);
+}
+
+/* ================= 4. FIREWORKS EFFECT ================= */
 function createFireworks() {
     const cakePage = document.querySelector(".cake-page");
     if (!cakePage) return;
@@ -106,7 +134,7 @@ function createFireworks() {
     }
 }
 
-/* ================= 4. GRAND FINALE FIREWORKS & INTERACTIVE STEPS ================= */
+/* ================= 5. GRAND FINALE FIREWORKS & INTERACTIVE STEPS ================= */
 function triggerFinaleFireworks() {
     const container = document.getElementById('finaleFireworks');
     if (!container) return;
@@ -117,7 +145,6 @@ function triggerFinaleFireworks() {
         const particle = document.createElement('div');
         particle.className = 'firework-particle';
         
-        // Start from center of the screen
         const startX = window.innerWidth / 2;
         const startY = window.innerHeight / 2;
         
@@ -142,10 +169,8 @@ function triggerFinaleFireworks() {
 }
 
 function showInteractiveStep(stepNumber) {
-    // Hide all steps
     document.querySelectorAll('.card-box').forEach(card => card.classList.add('hidden'));
     
-    // Show specific step
     const targetCard = document.getElementById(`step${stepNumber}`);
     if (targetCard) {
         targetCard.classList.remove('hidden');
@@ -166,12 +191,11 @@ function showFinale() {
     if (finale) {
         finale.classList.remove('hidden');
         triggerFinaleFireworks();
-        // Keep launching fireworks periodically
         setInterval(triggerFinaleFireworks, 1500);
     }
 }
 
-/* ================= 5. GLOBAL INTERACTION FUNCTIONS ================= */
+/* ================= 6. GLOBAL INTERACTION FUNCTIONS ================= */
 
 function openLetter() {
     const envelope = document.getElementById('envelopeContainer');
@@ -212,10 +236,11 @@ function spawnHearts(event) {
     }
 }
 
-/* ================= 6. EVENT LISTENERS ================= */
+/* ================= 7. EVENT LISTENERS ================= */
 document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
     initWebCanvas();
+    startCountdown();
 
     // Music Toggle Button
     const musicBtn = document.getElementById('musicBtn');
