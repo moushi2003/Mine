@@ -13,7 +13,7 @@ body {
     color: white;
 }
 
-/* ================= 1. UPDATED HERO / BIRTHDAY SCENE ================= */
+/* ================= 1. HERO / BIRTHDAY SCENE ================= */
 
 .scene {
     width: 100%;
@@ -50,6 +50,74 @@ body {
 @keyframes pulseGlow {
     0% { transform: scale(0.9); opacity: 0.6; }
     100% { transform: scale(1.15); opacity: 0.9; }
+}
+
+/* Spiderman Side Element */
+.spiderman-side-container {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+
+.main-web-line {
+    width: 2px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.spiderman-body {
+    position: relative;
+    width: 50px;
+    height: 70px;
+    background: #b91c1c;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset -4px -4px 10px rgba(0,0,0,0.5), 0 0 15px rgba(220, 38, 38, 0.5);
+    animation: swingSpider 3.5s infinite ease-in-out alternate;
+    transform-origin: top center;
+}
+
+@keyframes swingSpider {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+}
+
+.spider-head {
+    width: 32px;
+    height: 32px;
+    background: #dc2626;
+    border-radius: 50%;
+    margin-top: 6px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.eye-3d {
+    width: 8px;
+    height: 12px;
+    background: #ffffff;
+    border: 2px solid #000;
+    border-radius: 50% 50% 0 50%;
+}
+
+.eye-3d.right {
+    transform: scaleX(-1);
+}
+
+.spider-torso {
+    margin-top: 4px;
+    font-size: 14px;
 }
 
 .message-box {
@@ -133,18 +201,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 /* Blowing Curtains */
 .curtain {
     position: absolute;
     top: 0;
-    width: 30%;
+    width: 25%;
     height: 100%;
     background: repeating-linear-gradient(90deg, #500818, #991b1b 30px, #3b0712 60px);
     box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
     z-index: 8;
+    pointer-events: none;
 }
 
 .left-curtain {
@@ -169,55 +238,97 @@ body {
     100% { transform: skewY(3deg) scaleX(0.85); }
 }
 
-/* Realistic Floating Balloons */
+/* Realistic Corner Decorated Balloons */
 .balloon-cluster {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    top: -10px;
+    z-index: 9;
+    display: flex;
     pointer-events: none;
-    z-index: 3;
+}
+
+.left-cluster {
+    left: 20px;
+    animation: balloonFloatLeft 4s ease-in-out infinite alternate;
+}
+
+.right-cluster {
+    right: 20px;
+    animation: balloonFloatRight 4.5s ease-in-out infinite alternate;
 }
 
 .balloon {
-    position: absolute;
-    animation: floatBalloons 6s infinite ease-in-out alternate;
+    position: relative;
+    margin: 0 -10px;
 }
 
-.b1 { left: 10%; top: 15%; animation-delay: 0s; }
-.b2 { right: 12%; top: 20%; animation-delay: 2s; }
-.b3 { left: 20%; top: 40%; animation-delay: 4s; }
-
 .balloon-body {
-    width: 65px;
-    height: 80px;
-    background: radial-gradient(circle at 30% 30%, #ff6090, #be123c);
+    width: 60px;
+    height: 75px;
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.3);
+    box-shadow: inset -6px -6px 12px rgba(0,0,0,0.4), inset 6px 6px 12px rgba(255,255,255,0.4), 0 8px 18px rgba(0,0,0,0.5);
 }
 
 .string {
-    width: 2px;
-    height: 90px;
-    background: rgba(255,255,255,0.4);
+    width: 1.5px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.45);
     margin: 0 auto;
 }
 
-@keyframes floatBalloons {
-    0% { transform: translateY(0) rotate(-3deg); }
-    100% { transform: translateY(-30px) rotate(3deg); }
+/* Color Variations & Rotations */
+.b1 .balloon-body { background: radial-gradient(circle at 30% 30%, #ff79b0, #be123c, #880e4f); }
+.b1 { transform: rotate(-12deg); }
+
+.b2 .balloon-body { background: radial-gradient(circle at 30% 30%, #ffd54f, #ffb300, #d97706); }
+.b2 { transform: rotate(5deg) translateY(20px); }
+
+.b3 .balloon-body { background: radial-gradient(circle at 30% 30%, #38bdf8, #0284c7, #0369a1); }
+.b3 { transform: rotate(15deg); }
+
+.b4 .balloon-body { background: radial-gradient(circle at 30% 30%, #c084fc, #9333ea, #581c87); }
+.b4 { transform: rotate(12deg); }
+
+.b5 .balloon-body { background: radial-gradient(circle at 30% 30%, #fca5a5, #ef4444, #991b1b); }
+.b5 { transform: rotate(-8deg) translateY(20px); }
+
+.b6 .balloon-body { background: radial-gradient(circle at 30% 30%, #5eead4, #0d9488, #115e59); }
+.b6 { transform: rotate(-18deg); }
+
+@keyframes balloonFloatLeft {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(12px) rotate(3deg); }
 }
 
-/* Background Calendar */
+@keyframes balloonFloatRight {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(14px) rotate(-3deg); }
+}
+
+/* Page Header Title Section */
+.cake-header-wrap {
+    margin-top: 35px;
+    z-index: 6;
+}
+
+.cake-title {
+    font-size: 2.6rem;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+    color: #fff;
+    text-shadow: 0 0 15px #ff4081, 0 0 30px #ff1744;
+    text-align: center;
+}
+
+/* Background Calendar (Positioned cleanly below title) */
 .calendar-bg {
     position: absolute;
-    top: 12%;
+    top: 22%;
     z-index: 2;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.06);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    padding: 15px 20px;
+    padding: 15px 22px;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 15px 35px rgba(0,0,0,0.5);
@@ -268,23 +379,10 @@ body {
     pointer-events: none;
 }
 
-.cake-title {
-    position: absolute;
-    top: 50px;
-    width: 100%;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    font-family: 'Dancing Script', cursive;
-    color: #fff;
-    text-shadow: 0 0 15px #ff4081, 0 0 30px #ff1744;
-    z-index: 5;
-}
-
 /* Single-Tier Birthday Cake (Positioned Lower) */
 .birthday-cake {
     position: absolute;
-    bottom: 110px;
+    bottom: 105px;
     z-index: 5;
     display: flex;
     flex-direction: column;
@@ -351,7 +449,7 @@ body {
 
 .cake-buttons {
     position: absolute;
-    bottom: 35px;
+    bottom: 30px;
     z-index: 10;
     display: flex;
     gap: 25px;
